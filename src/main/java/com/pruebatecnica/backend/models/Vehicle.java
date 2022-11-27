@@ -1,6 +1,7 @@
 package com.pruebatecnica.backend.models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -13,7 +14,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(schema = "public", name = "vehicle")
+@Table(schema = "public", name = "vehicles")
 public class Vehicle implements Serializable {
     
     private static final long serialVersionUID = 1L;
@@ -36,8 +37,8 @@ public class Vehicle implements Serializable {
     @Column(name = "model", length = 5, nullable = false)
     private String model;
 
-    @Column(name = "market_value", nullable = false)
-    private Float marketValue;
+    @Column(name = "market_value", precision = 18, scale = 2)
+    private BigDecimal marketValue;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -88,11 +89,11 @@ public class Vehicle implements Serializable {
         this.model = model;
     }
 
-    public Float getMarketValue() {
+    public BigDecimal getMarketValue() {
         return this.marketValue;
     }
 
-    public void setMarketValue(Float marketValue) {
+    public void setMarketValue(BigDecimal marketValue) {
         this.marketValue = marketValue;
     }
 

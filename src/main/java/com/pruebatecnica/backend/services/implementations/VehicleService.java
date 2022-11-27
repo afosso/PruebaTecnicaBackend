@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pruebatecnica.backend.dtos.VehicleDto;
 import com.pruebatecnica.backend.models.Vehicle;
 import com.pruebatecnica.backend.repositories.VehicleRepository;
 import com.pruebatecnica.backend.services.interfaces.IVehicleService;
@@ -20,6 +21,11 @@ public class VehicleService implements IVehicleService {
     @Override
     public List<Vehicle> getAll() {
         return this.repository.findAll();
+    }
+
+    @Override
+    public List<VehicleDto> getAllByFilters(Boolean status, Integer brandId, String line, String model) {
+        return this.repository.getAllByFilters(status, brandId, line, model);
     }
 
     @Override
@@ -57,5 +63,5 @@ public class VehicleService implements IVehicleService {
 
         this.repository.save(vehicleSaved);
     }
-    
+
 }
