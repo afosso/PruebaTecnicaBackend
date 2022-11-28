@@ -17,7 +17,9 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
     List<Vehicle> findByBrand(Brand brand);
 
     @Query(value = "SELECT "
+                + "    vehi.id,"
                 + "    CASE WHEN vehi.status THEN 'Nuevo' ELSE 'Usado' END AS status,"
+                + "    vehi.brand_id AS brandId,"
                 + "    bra.name AS brand,"
                 + "    vehi.line,"
                 + "    vehi.model,"

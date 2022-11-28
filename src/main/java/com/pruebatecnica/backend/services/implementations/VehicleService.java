@@ -29,6 +29,11 @@ public class VehicleService implements IVehicleService {
     }
 
     @Override
+    public Optional<Vehicle> getById(Integer id) {
+        return this.repository.findById(id);
+    }
+
+    @Override
     public Vehicle save(Vehicle vehicle) throws Exception {
         vehicle.setCreatedAt(LocalDateTime.now());
         return this.repository.save(vehicle);

@@ -48,6 +48,22 @@ public class VehicleController {
         }
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getById(@PathVariable Integer id) {
+        try {
+            response.put("status", true);
+            response.put("message", "OK");
+            response.put("data", this.service.getById(id));
+
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            response.put("status", false);
+            response.put("message", e.getMessage());
+
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping
     public ResponseEntity<?> save(@RequestBody Vehicle vehicle) {
         try {
